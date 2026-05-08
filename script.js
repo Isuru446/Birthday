@@ -216,7 +216,6 @@ submitBtn.addEventListener('click', () => {
                             typeWriter("Maybe the password is your age.", textDisplay, () => {
                                 setTimeout(() => {
                                     typeWriter("How old are you? 🎂", textDisplay, () => {
-                                        photoContainer.style.display = 'none'; // Hide the beautiful image
                                         showInput("Enter your age...");
                                         currentStep = 1;
                                     });
@@ -333,7 +332,16 @@ submitBtn.addEventListener('click', () => {
                     typeWriter("So today is the day the world got lucky.", textDisplay, () => {
                         setTimeout(() => {
                             typeWriter("Happy Birthday, My Love 🎂❤️", textDisplay, () => {
-                                startSlideshow();
+                                // Show slideshow placeholder
+                                slideshow.innerHTML = `
+                                    <img src="Image 1.jpeg" alt="Memory 1" style="max-width: 200px; margin: 10px;">
+                                    <img src="Image 2.jpeg" alt="Memory 2" style="max-width: 200px; margin: 10px;">
+                                    <img src="Image 3.jpeg" alt="Memory 3" style="max-width: 200px; margin: 10px;">
+                                    <img src="Image 4.jpeg" alt="Memory 4" style="max-width: 200px; margin: 10px;">
+                                    <img src="Image 5.jpeg" alt="Memory 5" style="max-width: 200px; margin: 10px;">
+                                    <div>Final Message: I love you forever ❤️</div>
+                                `;
+                                slideshow.style.display = 'block';
                             });
                         }, 2000);
                     });
@@ -360,14 +368,5 @@ submitBtn.addEventListener('click', () => {
     }
 });
 
-function startSlideshow() {
-    const images = ["Image 1.jpeg", "Image 2.jpeg", "Image 3.jpeg", "Image 4.jpeg", "Image 5.jpeg"];
-    let index = 0;
-    slideshow.innerHTML = `<img src="${images[index]}" alt="Memory" style="max-width: 300px; margin: 10px;">`;
-    slideshow.style.display = 'block';
-
-    setInterval(() => {
-        index = (index + 1) % images.length;
-        slideshow.innerHTML = `<img src="${images[index]}" alt="Memory" style="max-width: 300px; margin: 10px;">`;
-    }, 3000); // Change every 3 seconds
-}
+// Start on load
+window.onload = startJourney;
